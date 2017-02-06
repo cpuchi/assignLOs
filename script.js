@@ -7,17 +7,26 @@
 			return;
 		}
 
+		var leader = $('#leader').val();
 		var result = [];		
-		
+		var iterations = 0;
+
 		while(number > 0){
 			var l = list.split(',');
+
+			if (iterations === 0 && number > 0){
+				result.push(leader);
+			} else {
+				l.unshift(leader);
+			}
+
 			while(l.length > 0 && number > 0){
 				var index = l.length*Math.random();
 				result.push(l.splice(index, 1)[0]);
 				number--;	
 			}
+			iterations++;
 		}
-	
 		
 		for(var i = 0; i < result.length; i++){
 			var div = $('<div/>');
